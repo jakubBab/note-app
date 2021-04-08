@@ -30,7 +30,7 @@ sh ./commands
 
 ## Usage
 
-Open your browser and type in:
+
 
 ```html
 http://127.0.0.1:8080
