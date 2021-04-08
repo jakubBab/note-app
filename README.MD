@@ -1,6 +1,6 @@
 # Task app
 
-Task app has been created for recruitment purposes only. It is by far not production ready code. It aims to show
+Task app has been created for recruitment purposes only. It is by far not production ready. It aims to show
 paradigm of OOP, DDD, CQS and Testing
 
 ## Installation
