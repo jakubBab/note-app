@@ -5,7 +5,7 @@ paradigm of OOP, DDD, CQS and Testing
 
 ## Installation
 
-Copy .env.example to .env in ***dockler-backend*** and ***dockler-front*** and adjust values if necessary. Default
+Copy .env.example to .env in ***root dir***, ***dockler-backend*** and ***dockler-front***. Adjust values if necessary. Default
 values work out of the box.
 
 Later please run:
@@ -14,25 +14,15 @@ Later please run:
 docker-compose up
 ```
 
-When build is completed
-
-Login to container:
+When build is completed execute:
 
 ```bash
-docker exec -it dockler-note_php-fpm_1 bash
-```
-
-Execute commands:
-
-```bash
-sh ./commands
+docker exec -it dockler-note_php-fpm_1 sh ./commands
 ```
 
 ## Usage
 
-
-
-```html
+```
 http://127.0.0.1:8080
 ```
 
