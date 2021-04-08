@@ -24,9 +24,9 @@ class TaskContext implements Context
      * You can also pass arbitrary arguments to the
      * context constructor through behat.yml.
      */
-    public function __construct()
+    public function __construct($parameters)
     {
-        $this->client = new GuzzleHttp\Client(['base_uri' => 'http://127.0.0.1:8081']);
+        $this->client = new GuzzleHttp\Client(['base_uri' => $parameters['api_url']]);
 
     }
 
