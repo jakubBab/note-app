@@ -14,7 +14,7 @@ Later please run:
 docker-compose up
 ```
 
-When build is completed execute:
+When build is completed execute command below and follow instructions
 
 ```bash
 docker exec -it dockler-note_php-fpm_1 sh ./commands
