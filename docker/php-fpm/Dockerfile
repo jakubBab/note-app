@@ -27,7 +27,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/dockler-backend
 
-CMD composer install;  wait-for-it database:3306 -- bin/console doctrine:database:create; wait-for-it database:3306 -- bin/console doctrine:migrations:migrate; wait-for-it database:3306 -- bin/console doctrine:fixture:load --append ;  php-fpm
+CMD composer install;  php-fpm
 
 
 EXPOSE 9000
