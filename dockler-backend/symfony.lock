@@ -1,4 +1,10 @@
 {
+    "behat/behat": {
+        "version": "3.8.x-dev"
+    },
+    "behat/gherkin": {
+        "version": "v4.8.0"
+    },
     "behat/transliterator": {
         "version": "v1.3.0"
     },
@@ -127,6 +133,15 @@
     "gedmo/doctrine-extensions": {
         "version": "v3.0.4"
     },
+    "guzzlehttp/guzzle": {
+        "version": "7.4-dev"
+    },
+    "guzzlehttp/promises": {
+        "version": "1.4-dev"
+    },
+    "guzzlehttp/psr7": {
+        "version": "2.0-dev"
+    },
     "jean85/pretty-package-versions": {
         "version": "2.x-dev"
     },
@@ -225,11 +240,23 @@
     "psr/event-dispatcher": {
         "version": "1.0.x-dev"
     },
+    "psr/http-client": {
+        "version": "1.0.x-dev"
+    },
+    "psr/http-factory": {
+        "version": "1.0.x-dev"
+    },
+    "psr/http-message": {
+        "version": "1.0.x-dev"
+    },
     "psr/log": {
         "version": "1.1.x-dev"
     },
     "psr/simple-cache": {
         "version": "1.0.x-dev"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
     },
     "ramsey/collection": {
         "version": "1.1.3"
