@@ -5,4 +5,6 @@ user:
 shared:
   error:
     unexpected: Unexpected error occured. Please contact the administrator.
+    database:
+      unable_to_save: 'Unable to save entity. Please contact administrator'
 

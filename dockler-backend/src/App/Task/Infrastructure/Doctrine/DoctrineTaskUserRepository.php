@@ -20,7 +20,7 @@ class DoctrineTaskUserRepository extends DoctrineRepository implements TaskUserR
     {
         $user = $this->entityManager()->getRepository(User::class)->find($taskDto->userId());
         if (empty($user)) {
-            throw new DomainArgumentException('user not found');
+            throw new DomainArgumentException($this->translator->trans('user.not found'));
         }
         $task = new Task();
         $task->setUuid($taskDto->uuid())
@@ -41,7 +41,7 @@ class DoctrineTaskUserRepository extends DoctrineRepository implements TaskUserR
         ]);
 
         if (empty($user)) {
-            throw new DomainArgumentException('user not found');
+            throw new DomainArgumentException($this->translator->trans('user.not found'));
         }
 
         $todayAtMidnight = (new \DateTime('now'))->modify('today midnight');
@@ -64,7 +64,7 @@ class DoctrineTaskUserRepository extends DoctrineRepository implements TaskUserR
         ]);
 
         if (empty($user)) {
-            throw new DomainArgumentException('user not found');
+            throw new DomainArgumentException($this->translator->trans('user.not found'));
         }
 
         $qb = $this->entityManager()->createQueryBuilder();

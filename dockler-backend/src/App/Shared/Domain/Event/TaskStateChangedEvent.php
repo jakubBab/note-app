@@ -1,13 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
-
 namespace App\App\Shared\Domain\Event;
-
 
 class TaskStateChangedEvent
 {
     private string $taskUuid;
+
     private bool $completed;
 
     public function __construct(string $taskUuid, bool $completed)
@@ -35,5 +35,4 @@ class TaskStateChangedEvent
     {
         $this->completed = $completed;
     }
-
 }

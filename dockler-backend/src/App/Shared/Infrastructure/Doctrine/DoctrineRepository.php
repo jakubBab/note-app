@@ -7,19 +7,27 @@ namespace App\App\Shared\Infrastructure\Doctrine;
 use App\App\Shared\Domain\Exception\DatabaseProcessException;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class DoctrineRepository
 {
     protected string $entity = '';
 
+    protected TranslatorInterface $translator;
+
     private EntityManagerInterface $entityManager;
 
     private LoggerInterface $databaseLogger;
 
-    public function __construct(EntityManagerInterface $entityManager, LoggerInterface $databaseLogger)
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        LoggerInterface $databaseLogger,
+        TranslatorInterface $translator
+    )
     {
         $this->entityManager = $entityManager;
         $this->databaseLogger = $databaseLogger;
+        $this->translator = $translator;
     }
 
     public function checkAndRestartConnection(): void
@@ -85,10 +93,8 @@ abstract class DoctrineRepository
 
             $this->update();
         } catch (\Exception $exception) {
-            dump($exception);
-            die;
             $this->logError($exception->getMessage(), $exception);
-            throw new DatabaseProcessException('Unable to save entity. Please contact administrator');
+            throw new DatabaseProcessException($this->translator->trans('shared.error.database.unable_to_save'));
         }
     }
 

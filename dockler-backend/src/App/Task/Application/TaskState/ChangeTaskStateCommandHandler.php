@@ -9,6 +9,7 @@ use App\App\Shared\Infrastructure\Symfony\MessageBus\Contract\CommandBusInterfac
 use App\App\Task\Domain\Dto\TaskDto;
 use App\App\Task\Infrastructure\Doctrine\DoctrineTaskRepository;
 use App\App\Task\Infrastructure\Doctrine\DoctrineTaskUserRepository;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ChangeTaskStateCommandHandler implements CommandBusInterface
 {
@@ -16,10 +17,13 @@ class ChangeTaskStateCommandHandler implements CommandBusInterface
 
     private DoctrineTaskRepository $taskRepository;
 
-    public function __construct(DoctrineTaskUserRepository $taskUserRepository, DoctrineTaskRepository $taskRepository)
+    private TranslatorInterface $translator;
+
+    public function __construct(DoctrineTaskUserRepository $taskUserRepository, DoctrineTaskRepository $taskRepository, TranslatorInterface $translator)
     {
         $this->taskUserRepository = $taskUserRepository;
         $this->taskRepository = $taskRepository;
+        $this->translator = $translator;
     }
 
     public function __invoke(ChangeTaskStateCommand $changeTaskStateCommand)
@@ -31,7 +35,7 @@ class ChangeTaskStateCommandHandler implements CommandBusInterface
         );
 
         if (empty($task)) {
-            throw new DomainArgumentException('task not found');
+            throw new DomainArgumentException($this->translator->trans('user.not_found'));
         }
 
         $this->taskRepository->changeTaskState($changeTaskStateCommand->completed(), $task->uuid());

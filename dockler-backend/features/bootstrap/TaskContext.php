@@ -77,13 +77,20 @@ class TaskContext implements Context
             throw new Exception("List of tasks should include {$arg1}");
         }
 
+        $sameDescriptionTasks = [];
         foreach ($this->listOfTasks as $task) {
             if ($task['description'] === $arg1) {
-                $this->task = $task;
-                return true;
+                $sameDescriptionTasks[] = $task;
             }
         }
-        throw new Exception("List of tasks should include {$arg1}");
+
+        if (empty($sameDescriptionTasks)) {
+            throw new Exception("List of tasks should include {$arg1}");
+
+        }
+
+        $this->task = end($sameDescriptionTasks);
+
     }
 
 
@@ -92,7 +99,7 @@ class TaskContext implements Context
      */
     public function iRequestAListOfTasksFrom($arg1)
     {
-        $listOfTasks = $this->client->get('/api/task/find', ['headers' => [
+        $listOfTasks = $this->client->get($arg1, ['headers' => [
             'Authorization' => "Bearer {$this->token}"
         ]]);
 
@@ -111,7 +118,7 @@ class TaskContext implements Context
     public function taskStateShouldBe($arg1)
     {
 
-        $state = $arg1 != "false";
+        $state = $arg1 == "true";
         if ($this->task['completed'] != $state) {
             throw new Exception("Task state should be  {$state} but is {$this->task['completed']}");
         }
@@ -127,8 +134,6 @@ class TaskContext implements Context
         ],
             'json' => ['completed' => (bool)$arg2, 'taskUuid' => $this->task['uuid']]
         ]);
-
-
     }
 
     /**
