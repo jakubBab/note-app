@@ -1,0 +1,20 @@
+task_find_by_user:
+  path: /find
+  controller: App\App\Task\UI\Controller\SearchTaskController::findUserTasks
+  methods: [ GET ]
+
+task_find:
+  path: /{taskUuid}
+  controller: App\App\Task\UI\Controller\SearchTaskController::findByUuid
+  methods: [ GET ]
+
+task_new:
+  path: /create
+  controller: App\App\Task\UI\Controller\NewTaskController::create
+  methods: [ POST ]
+
+
+task_change_state:
+  path: /state
+  controller: App\App\Task\UI\Controller\TaskStateController::changeTaskState
+  methods: [ PATCH ]

@@ -1,0 +1,7 @@
+api_login_check:
+  path: /login_check
+
+task:
+  resource: 'api/task.yaml'
+  prefix: /task
+

@@ -1,0 +1,38 @@
+doctrine:
+    dbal:
+        override_url: true
+        url: '%env(resolve:DATABASE_URL)%'
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
+        mappings:
+            gedmo_timestampable:
+                type: annotation
+                prefix: Gedmo\Timestampable\Entity
+                dir: "%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Timestampable"
+                is_bundle: false
+            App\App\User\Domain\User:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/App/User/Domain'
+                prefix: 'App\App\User\Domain\User'
+                alias: App\App\User\Domain\User
+            App\App\User\Domain\Role:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/App/User/Domain'
+                prefix: 'App\App\User\Domain\Role'
+                alias: App\App\User\Domain\Role
+            App\App\Task\Domain\Task:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/App/Task/Domain'
+                prefix: 'App\App\Task\Domain\Task'
+                alias: App\App\Task\Domain\Task
+            App\App\Task\Domain\TaskUser:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/App/Task/Domain'
+                prefix: 'App\App\Task\Domain\TaskUser'
+                alias: App\App\Task\Domain\TaskUser

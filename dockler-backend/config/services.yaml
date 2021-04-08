@@ -1,0 +1,57 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    _instanceof:
+        App\App\Shared\Infrastructure\Symfony\MessageBus\Contract\CommandBusInterface:
+            tags:
+                - { name: messenger.message_handler, bus: command.bus }
+
+        App\App\Shared\Infrastructure\Symfony\MessageBus\Contract\QueryBusInterface:
+            tags:
+                - { name: messenger.message_handler, bus: query.bus }
+
+        App\App\Shared\Infrastructure\Symfony\MessageBus\Contract\EventBusInterface:
+            tags:
+                - { name: messenger.message_handler, bus: event.bus }
+
+
+
+    #  MESSAGE BUSES
+    App\App\Shared\Infrastructure\Symfony\MessageBus\DocklerCommandBus: ~
+    App\App\Shared\Infrastructure\Symfony\MessageBus\DocklerQueryBus: ~
+    App\App\Shared\Infrastructure\Symfony\MessageBus\DocklerEventBus: ~
+
+    App\App\Shared\Infrastructure\Symfony\MessageBus\Contract\MessageBusInterface: '@App\App\Shared\Infrastructure\Symfony\MessageBus\DocklerCommandBus'
+    App\App\Shared\Infrastructure\Symfony\MessageBus\Contract\MessageBusInterface $queryBus: '@App\App\Shared\Infrastructure\Symfony\MessageBus\DocklerQueryBus'
+    App\App\Shared\Infrastructure\Symfony\MessageBus\Contract\MessageBusInterface $eventBus: '@App\App\Shared\Infrastructure\Symfony\MessageBus\DocklerEventBus'
+
+
+    App\App\Shared\UI\Response\SerializerWrapper:
+        arguments:
+            $serializer: '@jms_serializer'
+
+
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones

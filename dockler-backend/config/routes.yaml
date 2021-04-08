@@ -1,0 +1,8 @@
+index:
+    path: /
+    controller: App\Controller\TestController::index
+
+api:
+    resource: 'routes/api.yaml'
+    prefix: /api
+
