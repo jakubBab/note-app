@@ -1,6 +1,6 @@
 # Task app
 
-Task app has been created for recruitment purposes only. It is by far not production ready. It aims to show
+>Task app has been created for recruitment purposes only. It is by far not production ready. It aims to show
 paradigm of OOP, DDD, CQS and Testing
 
 ## Installation
@@ -17,7 +17,7 @@ docker-compose up
 When build is completed execute command below and follow instructions
 
 ```bash
-docker exec -it dockler-note_php-fpm_1 sh ./commands
+docker exec -it note-app_php-fpm_1 sh ./commands
 ```
 
 ## Usage
@@ -28,9 +28,11 @@ http://127.0.0.1:8080
 
 If previous steps have been fulfilled there should already be one task provided. You can
 
-***create task***
+>***Create tasks for the day***
 
-***change task state***
+>***Change task state***
+
+
 
 ## Tests
 

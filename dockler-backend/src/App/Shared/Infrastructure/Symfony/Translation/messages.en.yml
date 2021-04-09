@@ -2,6 +2,9 @@ user:
   not_found: user has not been found
   token_not_found: token not found
 
+task:
+  not_found: task has not been found
+
 shared:
   error:
     unexpected: Unexpected error occured. Please contact the administrator.

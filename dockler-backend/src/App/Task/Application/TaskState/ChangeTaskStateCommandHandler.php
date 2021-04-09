@@ -19,7 +19,10 @@ class ChangeTaskStateCommandHandler implements CommandBusInterface
 
     private TranslatorInterface $translator;
 
-    public function __construct(DoctrineTaskUserRepository $taskUserRepository, DoctrineTaskRepository $taskRepository, TranslatorInterface $translator)
+    public function __construct(
+        DoctrineTaskUserRepository $taskUserRepository,
+        DoctrineTaskRepository $taskRepository,
+        TranslatorInterface $translator)
     {
         $this->taskUserRepository = $taskUserRepository;
         $this->taskRepository = $taskRepository;
@@ -35,7 +38,7 @@ class ChangeTaskStateCommandHandler implements CommandBusInterface
         );
 
         if (empty($task)) {
-            throw new DomainArgumentException($this->translator->trans('user.not_found'));
+            throw new DomainArgumentException($this->translator->trans('task.not_found'));
         }
 
         $this->taskRepository->changeTaskState($changeTaskStateCommand->completed(), $task->uuid());
