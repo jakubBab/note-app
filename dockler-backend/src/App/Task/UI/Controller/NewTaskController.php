@@ -35,9 +35,9 @@ class NewTaskController extends DocklerAbstractController
             $data['description']
         ));
 
-        if ($isResponse instanceof Response) {
-            return $isResponse;
-        }
+//        if ($isResponse instanceof Response) {
+//            return $isResponse;
+//        }
 
         $this->dispatchEvent(new TaskCreatedEvent($taskUuid));
 
